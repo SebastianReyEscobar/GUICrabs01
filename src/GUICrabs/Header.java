@@ -1,4 +1,4 @@
-package myProject;
+package GUICrabs;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,5 +1,5 @@
 # guiTemplate
-Proyecto para usar como "Sebastian REYY" en Intellij. 
+Proyecto para usar como "Sebastian REY" en Intellij. 
 Universidad del Valle
 Escuela de Ingeniería de Sistemas y Computación
 Asignaturas: Fundamentos de Programación Orientada a Eventos / Programación Interactiva
