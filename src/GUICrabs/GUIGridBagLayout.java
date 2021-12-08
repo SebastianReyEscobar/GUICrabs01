@@ -28,6 +28,8 @@ public class GUIGridBagLayout extends JFrame {
         initGIU();
         //Default JFrame configuration
         this.setTitle("Juego Craps");
+        this.setUndecorated(true);
+        this.setBackground(new Color(255,255,255,0));
         this.pack();
         this.setResizable(true);
         this.setVisible(true);
@@ -57,7 +59,7 @@ public class GUIGridBagLayout extends JFrame {
         constraints.fill = GridBagConstraints.NONE;
         constraints.anchor = GridBagConstraints.LINE_START;
         this.add(ayuda,constraints);
-        salir = new JButton(" ? ");
+        salir = new JButton(" Salir ");
         salir.addActionListener(escucha);
         constraints.gridx = 1;
         constraints.gridy = 1;
@@ -65,6 +67,56 @@ public class GUIGridBagLayout extends JFrame {
         constraints.fill = GridBagConstraints.NONE;
         constraints.anchor = GridBagConstraints.LINE_END;
         this.add(salir,constraints);
+
+
+        imageDado = new ImageIcon(getClass().getResource("/resourses/dado.png"));
+        dado1 = new JLabel(imageDado);
+        dado2 = new JLabel(imageDado);
+        panelDados = new JPanel();
+        panelDados.setPreferredSize(new Dimension(300,180));
+        panelDados.setBorder(BorderFactory.createTitledBorder("Tus Dados"));
+        panelDados.add(dado1);
+        panelDados.add(dado2);
+        constraints.gridx = 0;
+        constraints.gridy = 2;
+        constraints.gridwidth = 1;
+        constraints.fill = GridBagConstraints.BOTH;
+        constraints.anchor = GridBagConstraints.CENTER;
+        this.add(panelDados,constraints);
+
+        resultadosDados = new JTextArea(4,31);
+        resultadosDados.setBorder(BorderFactory.createTitledBorder("Resultados"));
+        resultadosDados.setText("Debes lanzar los dados :D");
+        resultadosDados.setBackground(new Color(255,255,255,0));
+        resultadosDados.setEditable(false);
+        constraints.gridx = 1;
+        constraints.gridy = 2;
+        constraints.gridwidth = 1;
+        constraints.fill = GridBagConstraints.BOTH;
+        constraints.anchor = GridBagConstraints.CENTER;
+        this.add(resultadosDados,constraints);
+
+
+        lanzar = new JButton("lanzar");
+        lanzar.addActionListener(escucha);
+        constraints.gridx = 0;
+        constraints.gridy = 3;
+        constraints.gridwidth = 2;
+        constraints.fill = GridBagConstraints.NONE;
+        constraints.anchor = GridBagConstraints.CENTER;
+        this.add(lanzar,constraints);
+
+        mensajeSalida = new JTextArea(4,31);
+        mensajeSalida.setText("Usa el boton ( ? ) Para ver las reglas del juego :3 ");
+        mensajeSalida.setBorder(BorderFactory.createTitledBorder("Mensajes"));
+        mensajeSalida.setBackground(null);
+        mensajeSalida.setEditable(false);
+        constraints.gridx = 0;
+        constraints.gridy = 4;
+        constraints.gridwidth = 2;
+        constraints.fill = GridBagConstraints.NONE;
+        constraints.anchor = GridBagConstraints.CENTER;
+        this.add(mensajeSalida,constraints);
 
     }
 
@@ -86,16 +138,25 @@ public class GUIGridBagLayout extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            modeldelCraps.calcularTiro();
-            int[] caras = modeldelCraps.getCaras();
-            imageDado = new ImageIcon(getClass().getResource("/resourses/"+caras[0]+".png"));
-            dado1.setIcon(imageDado);
-            imageDado = new ImageIcon(getClass().getResource("/resourses/"+caras[1]+".png"));
-            dado2.setIcon(imageDado);
-            modeldelCraps.determinarJuego();
-            mensajeSalida.setRows(4);
-            mensajeSalida.setText(modeldelCraps.getestadoToString()[1]);
-            resultadosDados.setText(modeldelCraps.getestadoToString()[0]);
+      if(e.getSource()==lanzar){
+          modeldelCraps.calcularTiro();
+          int[] caras = modeldelCraps.getCaras();
+          imageDado = new ImageIcon(getClass().getResource("/resourses/"+caras[0]+".png"));
+          dado1.setIcon(imageDado);
+          imageDado = new ImageIcon(getClass().getResource("/resourses/"+caras[1]+".png"));
+          dado2.setIcon(imageDado);
+          modeldelCraps.determinarJuego();
+          mensajeSalida.setText(modeldelCraps.getestadoToString()[1]);
+          resultadosDados.setText(modeldelCraps.getestadoToString()[0]);
+      }else {
+        if(e.getSource()==ayuda){
+            JOptionPane.showMessageDialog(null,MENSAJE_INICIO);
+        }else{
+            System.exit(0);
+        }
+
+      }
+
         }
     }
 
