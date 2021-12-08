@@ -1,6 +1,7 @@
 package GUICrabs;
 
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -29,7 +30,7 @@ public class GUIGridBagLayout extends JFrame {
         //Default JFrame configuration
         this.setTitle("Juego Craps");
         this.setUndecorated(true);
-        this.setBackground(new Color(255,255,255,0));
+        this.setBackground(new Color(253,254,254));
         this.pack();
         this.setResizable(true);
         this.setVisible(true);
@@ -45,7 +46,7 @@ public class GUIGridBagLayout extends JFrame {
         escucha = new Escucha();
         modeldelCraps = new ModeldelCraps();
         //Set up JComponents
-        headerProject = new Header("Mesa Juego Craps", Color.BLACK);
+        headerProject = new Header("Mesa Juego Craps", new Color(88,214,141));
         constraints.gridx = 0;
         constraints.gridy = 0;
         constraints.gridwidth = 2;
@@ -53,6 +54,13 @@ public class GUIGridBagLayout extends JFrame {
         this.add(headerProject,constraints);
         ayuda = new JButton(" ? ");
         ayuda.addActionListener(escucha);
+        //Jugando con los botones en Java :)
+        ayuda.setFont(new Font("MONOSPACED",Font.PLAIN,16));
+        ayuda.setFocusPainted(false);
+        ayuda.setBackground(Color.WHITE);
+        ayuda.setBorder(new LineBorder(Color.BLUE));
+        ayuda.setForeground(Color.GRAY);
+        // Aqui terminamos de juga
         constraints.gridx = 0;
         constraints.gridy = 1;
         constraints.gridwidth = 1;
@@ -61,6 +69,14 @@ public class GUIGridBagLayout extends JFrame {
         this.add(ayuda,constraints);
         salir = new JButton(" Salir ");
         salir.addActionListener(escucha);
+        //Jugando con los botones en Java :)
+        salir.setBounds(15,90,195,50);
+        salir.setFont(new Font("MONOSPACED",Font.PLAIN,16));
+        salir.setFocusPainted(false);
+        salir.setBackground(Color.WHITE);
+        salir.setBorder(new LineBorder(Color.RED));
+        salir.setForeground(Color.DARK_GRAY);
+        // Aqui terminamos de juga
         constraints.gridx = 1;
         constraints.gridy = 1;
         constraints.gridwidth = 1;
@@ -77,6 +93,7 @@ public class GUIGridBagLayout extends JFrame {
         panelDados.setBorder(BorderFactory.createTitledBorder("Tus Dados"));
         panelDados.add(dado1);
         panelDados.add(dado2);
+        panelDados.setBackground(Color.WHITE);
         constraints.gridx = 0;
         constraints.gridy = 2;
         constraints.gridwidth = 1;
@@ -86,8 +103,9 @@ public class GUIGridBagLayout extends JFrame {
 
         resultadosDados = new JTextArea(4,31);
         resultadosDados.setBorder(BorderFactory.createTitledBorder("Resultados"));
+        resultadosDados.setBackground(new Color(253,254,254));
         resultadosDados.setText("Debes lanzar los dados :D");
-        resultadosDados.setBackground(new Color(255,255,255,0));
+        resultadosDados.setFont(new Font("MONOSPACED",Font.PLAIN,16));
         resultadosDados.setEditable(false);
         constraints.gridx = 1;
         constraints.gridy = 2;
@@ -99,6 +117,14 @@ public class GUIGridBagLayout extends JFrame {
 
         lanzar = new JButton("lanzar");
         lanzar.addActionListener(escucha);
+        //Jugando con los botones en Java :)
+        lanzar.setBounds(15,90,195,50);
+        lanzar.setFont(new Font("MONOSPACED",Font.PLAIN,16));
+        lanzar.setFocusPainted(false);
+        lanzar.setBackground(Color.WHITE);
+        lanzar.setBorder(new LineBorder(Color.GREEN));
+        lanzar.setForeground(Color.DARK_GRAY);
+        // Aqui terminamos de juga
         constraints.gridx = 0;
         constraints.gridy = 3;
         constraints.gridwidth = 2;
@@ -109,7 +135,7 @@ public class GUIGridBagLayout extends JFrame {
         mensajeSalida = new JTextArea(4,31);
         mensajeSalida.setText("Usa el boton ( ? ) Para ver las reglas del juego :3 ");
         mensajeSalida.setBorder(BorderFactory.createTitledBorder("Mensajes"));
-        mensajeSalida.setBackground(null);
+        mensajeSalida.setFont(new Font("MONOSPACED",Font.PLAIN,16));
         mensajeSalida.setEditable(false);
         constraints.gridx = 0;
         constraints.gridy = 4;
