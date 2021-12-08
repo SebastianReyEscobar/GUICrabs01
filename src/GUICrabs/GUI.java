@@ -25,7 +25,8 @@ public class GUI extends JFrame {
     private JButton lanzar;
     private JPanel panelDados, panelResultados;
     private ImageIcon imageDado;
-    private JTextArea resultados;
+    private JTextArea mensajeSalida, resultadosDados;
+    private JSeparator separator;
     private Escucha escucha;
     private ModeldelCraps modeldelCraps;
 
@@ -70,11 +71,20 @@ public class GUI extends JFrame {
 
         this.add(panelDados,BorderLayout.CENTER);
 
-        resultados = new JTextArea(7,31);
-        resultados.setText(MENSAJE_INICIO);
-        resultados.setBorder(BorderFactory.createTitledBorder("¿Que debes hacer?"));
-        JScrollPane scroll = new JScrollPane(resultados);
-        this.add(scroll,BorderLayout.EAST);
+        mensajeSalida = new JTextArea(7,31);
+        mensajeSalida.setText(MENSAJE_INICIO);
+        JScrollPane scroll = new JScrollPane(mensajeSalida);
+        panelResultados = new JPanel();
+        panelResultados.setBorder(BorderFactory.createTitledBorder("¿Que debes hacer?"));
+        panelResultados.add(scroll);
+        panelResultados.setPreferredSize(new Dimension(370,180));
+        this.add(panelResultados,BorderLayout.EAST);
+
+        resultadosDados = new JTextArea(4,31);
+        separator = new JSeparator();
+        separator.setPreferredSize(new Dimension(350,5));
+        separator.setBackground(Color.black);
+
     }
 
     /**
@@ -102,7 +112,16 @@ public class GUI extends JFrame {
             imageDado = new ImageIcon(getClass().getResource("/resourses/"+caras[1]+".png"));
             dado2.setIcon(imageDado);
             modeldelCraps.determinarJuego();
-            resultados.setText(modeldelCraps.getestadoToString());
+            panelResultados.removeAll();
+            panelResultados.setBorder(BorderFactory.createTitledBorder("Resultados"));
+            panelResultados.add(resultadosDados);
+            panelResultados.add(separator);
+            panelResultados.add(mensajeSalida);
+            mensajeSalida.setRows(4);
+            mensajeSalida.setText(modeldelCraps.getestadoToString()[1]);
+            resultadosDados.setText(modeldelCraps.getestadoToString()[0]);
+            revalidate();
+            repaint();
         }
     }
 }
