@@ -104,12 +104,12 @@ public class ModeldelCraps {
             break;
             case 2: estadoToString = "Sacaste Craps, haz perdido!!";
             break;
-            case 3: estadoToString = "Estableciste punto en "+punto+"continua lanzando!!"+
-                                      "\n pero si sacas 7 ants que" + punto+ "vas a perder :c";
+            case 3: estadoToString = "Estableciste punto en "+punto+" continua lanzando!!"+
+                                      "\n pero si sacas 7 antes que " + punto+ " vas a perder :c";
             break;
             case 4: estadoToString = "Volviste a sacar "+punto+", has ganado";
             break;
-            case 5: estadoToString = "Sacaste 7 antes que "+punto+"has perdido!!";
+            case 5: estadoToString = "Sacaste 7 antes que "+punto+" has perdido!!";
             break;
         }
         return estadoToString;
